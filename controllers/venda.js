@@ -15,13 +15,16 @@ export const getVendas = (_, res) => {
 }
 
 export const addVendas = (req, res) => {
-    const q = 'INSERT INTO tb_vendas (valor_venda, hora_venda, id_venda_pgto) VALUES ?'
+    const q = 'INSERT INTO tb_vendas (id_caixa, hora_venda, credito, debito, dinheiro, pix) VALUES ?'
   
     const values = [
       [
-        req.body.valor_venda, 
+        req.body.id_caixa, 
         req.body.hora_venda, 
-        req.body.id_venda_pgto
+        req.body.credito, 
+        req.body.debito, 
+        req.body.dinheiro, 
+        req.body.pix, 
       ],
     ]
     db.query(q, [values], (err) => {
@@ -32,13 +35,16 @@ export const addVendas = (req, res) => {
   
 
 export const updateVendas = (req, res) => {
-    const q = "UPDATE tb_vendas SET id_venda = ?, valor_venda = ?, hora_venda = ?, id_venda_pgto = ? WHERE id_venda = ?"
+    const q = "UPDATE tb_vendas SET id_venda = ?, id_caixa = ?, hora_venda = ?, credito = ?, debito = ?, dinheiro = ?, pix = ? WHERE id_venda = ?"
 
     const values = [
       req.body.id_venda, 
-      req.body.valor_venda, 
+      req.body.id_caixa, 
       req.body.hora_venda, 
-      req.body.id_venda_pgto,
+      req.body.credito, 
+      req.body.debito, 
+      req.body.dinheiro, 
+      req.body.pix, 
     ]
 
     db.query(q, [...values, req.params.id_venda], (err) => {

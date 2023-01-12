@@ -4,7 +4,6 @@ import { getProducts, addProducts, updateProducts, deleteProducts } from "../con
 import { getCaixas, addCaixas, updateCaixas, deleteCaixas } from "../controllers/caixa";
 
 import { getVendas, addVendas, updateVendas, deleteVendas } from "../controllers/venda";
-import { getVendasPgto, addVendasPgto, updateVendasPgto, deleteVendasPgto } from "../controllers/venda_pgto";
 import { getVendasProdutos, addVendasProdutos, updateVendasProdutos, deleteVendasProdutos } from "../controllers/vendas_produtos";
 import { getFormas } from "../controllers/formas";
 
@@ -33,11 +32,6 @@ router.get("/vendas", getVendas)
 router.post("/vendas", addVendas)
 router.put("/vendas/:id_venda", updateVendas)
 router.delete("/vendas/:id_venda", deleteVendas)
-
-router.get("/vendapgto", getVendasPgto)
-router.post("/vendapgto", addVendasPgto)
-router.put("/vendapgto/:id_venda_pgto", updateVendasPgto)
-router.delete("/vendapgto/:id_venda_pgto ", deleteVendasPgto)
 
 router.get("/vendasprodutos", getVendasProdutos)
 router.post("/vendasprodutos", addVendasProdutos)
