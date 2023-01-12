@@ -1,10 +1,11 @@
 import express from "express";
-import { getUsers, addUser, updateUser, deleteUser } from "../controllers/usuario";
+import { getUsers, getUser, addUser, updateUser, deleteUser } from "../controllers/usuario";
 import { getProducts, addProducts, updateProducts, deleteProducts } from "../controllers/produto";
 import { getCaixas, addCaixas, updateCaixas, deleteCaixas } from "../controllers/caixa";
 
 import { getVendas, addVendas, updateVendas, deleteVendas } from "../controllers/venda";
 import { getVendasPgto, addVendasPgto, updateVendasPgto, deleteVendasPgto } from "../controllers/venda_pgto";
+import { getVendasProdutos, addVendasProdutos, updateVendasProdutos, deleteVendasProdutos } from "../controllers/vendas_produtos";
 import { getFormas } from "../controllers/formas";
 
 const router = express.Router()
@@ -13,29 +14,35 @@ const router = express.Router()
 // usa o metod get, requerimento
 
 router.get("/usuarios", getUsers)
+router.get("/usuarios/id_usuario", getUser)
 router.post("/usuarios", addUser)
-router.put("/usuarios/:id", updateUser)
-router.delete("/usuarios/:id", deleteUser)
+router.put("/usuarios/:id_usuario", updateUser)
+router.delete("/usuarios/:id_usuario", deleteUser)
 
 router.get("/produtos", getProducts)
 router.post("/produtos", addProducts)
-router.put("/produtos/:id", updateProducts)
-router.delete("/produtos/:id", deleteProducts)
+router.put("/produtos/:id_produto", updateProducts)
+router.delete("/produtos/:id_produto", deleteProducts)
 
 router.get("/caixas", getCaixas)
 router.post("/caixas", addCaixas)
-router.put("/caixas/:id", updateCaixas)
-router.delete("/caixas/:id", deleteCaixas)
+router.put("/caixas/:id_caixa", updateCaixas)
+router.delete("/caixas/:id_caixa", deleteCaixas)
 
 router.get("/vendas", getVendas)
 router.post("/vendas", addVendas)
-router.put("/vendas/:id", updateVendas)
-router.delete("/vendas/:id", deleteVendas)
+router.put("/vendas/:id_venda", updateVendas)
+router.delete("/vendas/:id_venda", deleteVendas)
 
-router.get("/vendaPgto", getVendasPgto)
-router.post("/vendaPgto", addVendasPgto)
-router.put("/vendaPgto/:id", updateVendasPgto)
-router.delete("/vendaPgto/:id", deleteVendasPgto)
+router.get("/vendapgto", getVendasPgto)
+router.post("/vendapgto", addVendasPgto)
+router.put("/vendapgto/:id_venda_pgto", updateVendasPgto)
+router.delete("/vendapgto/:id_venda_pgto ", deleteVendasPgto)
+
+router.get("/vendasprodutos", getVendasProdutos)
+router.post("/vendasprodutos", addVendasProdutos)
+router.put("/vendasprodutos/:id_venda_produto", updateVendasProdutos)
+router.delete("/vendasprodutos/:id_venda_produto ", deleteVendasProdutos)
 
 router.get("/formas", getFormas)
 

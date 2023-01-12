@@ -13,8 +13,16 @@ export const getUsers = (_, res) => {
         return res.status(200).json(data)
     })
 }
+// faz o requerimento somente de um usuario
+export const getUser = (_, res) => {
+    const q = "SELECT * FROM tb_usuarios WHERE id_usuario = ?"
 
-// Está funcioando
+    db.query(q, [id_usuario], (err, data) => {
+        if (err) return res.json(err)
+        return res.status(200).json(data)
+    })
+}
+
 export const addUser = (req, res) => {
     const q = "INSERT INTO tb_usuarios(nome_usuario, login, senha, tipo) VALUES ?"
 

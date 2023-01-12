@@ -12,7 +12,7 @@ export const getCaixas = (_, res) => {
 
 // Adiciona novo caixa
 export const addCaixas = (req, res) => {
-    const q = 'INSERT INTO tb_caixas (id_usuario, id_festa, abertura, sangria, status_caixa, data_abertura, data_fechamento) VALUES ?'
+    const q = 'INSERT INTO tb_caixas (id_usuario, id_festa, abertura, sangria, status_caixa, data_abertura, hora_abertura, data_fechamento) VALUES ?'
   
     const values = [
       [
@@ -22,6 +22,7 @@ export const addCaixas = (req, res) => {
         req.body.sangria, 
         req.body.status_caixa,
         req.body.data_abertura, 
+        req.body.hora_abertura, 
         req.body.data_fechamento
       ],
     ]
@@ -33,7 +34,7 @@ export const addCaixas = (req, res) => {
   
 // Altera caixa
 export const updateCaixas = (req, res) => {
-    const q = "UPDATE tb_caixas SET id_caixa = ?, id_usuario = ?, id_festa = ?, abertura = ?, sangria = ?, status_caixa = ?, data_abertura = ?, data_fechamento = ? WHERE id_caixa = ?"
+    const q = "UPDATE tb_caixas SET id_caixa = ?, id_usuario = ?, id_festa = ?, abertura = ?, sangria = ?, status_caixa = ?, data_abertura = ?, hora_abertura = ?, data_fechamento = ? WHERE id_caixa = ?"
 
     const values = [
       req.body.id_caixa, 
@@ -43,6 +44,7 @@ export const updateCaixas = (req, res) => {
       req.body.sangria, 
       req.body.status_caixa,
       req.body.data_abertura, 
+      req.body.hora_abertura, 
       req.body.data_fechamento, 
     ]
 

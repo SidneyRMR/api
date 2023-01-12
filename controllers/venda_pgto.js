@@ -31,7 +31,7 @@ export const addVendasPgto = (req, res) => {
   }
   
 export const updateVendasPgto = (req, res) => {
-    const q = "UPDATE tb_vendas_pgto SET id_venda_pgto  = ?, id_venda  = ?, id_forma = ?, valor_pgto = ? WHERE id_venda_pgto = ?"
+    const q = "UPDATE tb_vendas_pgto SET id_venda_pgto = ?, id_venda  = ?, id_forma = ?, valor_pgto = ? WHERE id_venda_pgto = ?"
 
     const values = [
       req.body.id_venda_pgto, 
