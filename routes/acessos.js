@@ -5,8 +5,8 @@ import { getCaixas, addCaixas, updateCaixas, deleteCaixas } from "../controllers
 
 import { getVendas, addVendas, updateVendas, deleteVendas } from "../controllers/venda";
 import { getVendasProdutos, addVendasProdutos, updateVendasProdutos, deleteVendasProdutos } from "../controllers/vendas_produtos";
+import { getSangria, addSangria, updateSangria, deleteSangria } from "../controllers/sangria";
 import { getCaixasUsuarios } from "../controllers/vw_caixas_usuarios";
-import { getFormas } from "../controllers/formas";
 
 const router = express.Router()
 
@@ -39,7 +39,11 @@ router.post("/vendasprodutos", addVendasProdutos)
 router.put("/vendasprodutos/:id_venda_produto", updateVendasProdutos)
 router.delete("/vendasprodutos/:id_venda_produto ", deleteVendasProdutos)
 
+router.get("/sangria", getSangria)
+router.post("/sangria", addSangria)
+router.put("/sangria/:id_sangria", updateSangria)
+router.delete("/sangria/:id_sangria ", deleteSangria)
+
 router.get("/vw_caixas_usuarios", getCaixasUsuarios)
-router.get("/formas", getFormas)
 
 export default router
