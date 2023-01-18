@@ -15,13 +15,16 @@ export const getVendasProdutos = (_, res) => {
 }
 
 export const addVendasProdutos = (req, res) => {
-    const q = 'INSERT INTO tb_vendas_produtos (id_venda_produto, id_produto, qtde_venda_produto) VALUES ?'
+    const q = 'INSERT INTO tb_vendas_produtos ( id_produto, nome, medida, preco, qtde_venda_produto, id_venda) VALUES ?'
   
     const values = [
       [
-        req.body.id_venda_produto, 
         req.body.id_produto, 
-        req.body.qtde_venda_produto
+        req.body.nome, 
+        req.body.medida,
+        req.body.preco,
+        req.body.qtde_venda_produto,
+        req.body.id_venda
       ],
     ]
     db.query(q, [values], (err) => {
@@ -31,13 +34,16 @@ export const addVendasProdutos = (req, res) => {
   }
   
 export const updateVendasProdutos = (req, res) => {
-    const q = "UPDATE tb_vendas_produtos SET id_venda_produto = ?, id_produto = ?, qtde_venda_produto = ?, id_venda  = ? WHERE id_venda_produto = ?"
+    const q = "UPDATE tb_vendas_produtos SET id_venda_produto = ?, id_produto = ?, nome = ?, medida = ?, preco = ?, qtde_venda_produto = ?, id_venda  = ? WHERE id_venda_produto = ?"
 
     const values = [
       req.body.id_venda_produto, 
       req.body.id_produto, 
-      req.body.qtde_venda_produto, 
-      req.body.id_venda, 
+      req.body.nome, 
+      req.body.medida,
+      req.body.preco,
+      req.body.qtde_venda_produto,
+      req.body.id_venda
     ]
 
     db.query(q, [...values, req.params.id_venda_produto], (err) => {
