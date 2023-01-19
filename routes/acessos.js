@@ -13,6 +13,11 @@ const router = express.Router()
 // gerencia a rota em que será carregado os valores consultados do db
 // usa o metod get, requerimento
 
+router.get("/status", (req, res) => {
+    res.status(200).json('Running...');
+ });
+ 
+
 router.get("/usuarios", getUsers)
 router.get("/usuarios/id_usuario", getUser)
 router.post("/usuarios", addUser)
