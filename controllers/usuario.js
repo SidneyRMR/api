@@ -5,6 +5,12 @@ import {db} from "../db"
 export const getUsers = (_, res) => {
     const q = "SELECT * FROM tb_usuarios"
 
+// console.log({
+//     host: process.env.MYSQLHOST,
+//     user: process.env.MYSQLUSER,
+//     password: process.env.MYSQLPASSWORD,
+//     database: process.env.MYSQLDATABASE
+// })
     //este codigo acessa o bd.tb_usuarios e carrega os valores, caso dê erro, retorna o codigo de erro
     db.query(q, (err, data) => {
         if (err) return res.json(err)
