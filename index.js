@@ -14,7 +14,7 @@ app.use(cors())
 app.use("/", userRoutes)
 
 //define em que porta que será disponibilizado a api da consulta/query
-const port = process.env.PORT
+const port = process.env.MYSQLPORT
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
   })
