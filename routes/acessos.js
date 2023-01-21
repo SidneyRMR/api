@@ -1,4 +1,5 @@
 import express from "express";
+import {pool} from '../db.js'
 import { getUsers, getUser, addUser, updateUser, deleteUser } from "../controllers/usuario";
 import { getProducts, addProducts, updateProducts, deleteProducts } from "../controllers/produto";
 import { getFestas, addFestas, updateFestas, deleteFestas } from "../controllers/festa";
@@ -14,7 +15,8 @@ const router = express.Router()
 // gerencia a rota em que será carregado os valores consultados do db
 
 router.get("/status", (req, res) => {
-    res.status(200).json('Running...')})
+    pool.query('SELECT "Hello world" as RESULT')
+    res.send('Running...')})
 
 router.get("/usuarios", getUsers)
 router.get("/usuarios/id_usuario", getUser)
