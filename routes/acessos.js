@@ -1,6 +1,7 @@
 import express from "express";
 import { getUsers, getUser, addUser, updateUser, deleteUser } from "../controllers/usuario";
 import { getProducts, addProducts, updateProducts, deleteProducts } from "../controllers/produto";
+import { getFestas, addFestas, updateFestas, deleteFestas } from "../controllers/festa";
 import { getCaixas, addCaixas, updateCaixas, deleteCaixas } from "../controllers/caixa";
 
 import { getVendas, addVendas, updateVendas, deleteVendas } from "../controllers/venda";
@@ -13,8 +14,7 @@ const router = express.Router()
 // gerencia a rota em que será carregado os valores consultados do db
 
 router.get("/status", (req, res) => {
-    res.status(200).json('Running...')
- })
+    res.status(200).json('Running...')})
 
 router.get("/usuarios", getUsers)
 router.get("/usuarios/id_usuario", getUser)
@@ -26,6 +26,11 @@ router.get("/produtos", getProducts)
 router.post("/produtos", addProducts)
 router.put("/produtos/:id_produto", updateProducts)
 router.delete("/produtos/:id_produto", deleteProducts)
+
+router.get("/festas", getFestas)
+router.post("/festas", addFestas)
+router.put("/festas/:id_festa", updateFestas)
+router.delete("/festas/:id_festa", deleteFestas)
 
 router.get("/caixas", getCaixas)
 router.post("/caixas", addCaixas)
