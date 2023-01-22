@@ -1,5 +1,5 @@
 import express from "express";
-import {db} from '../db.js'
+import {pool} from '../db.js'
 import { getUsers, getUser, addUser, updateUser, deleteUser } from "../controllers/usuario";
 import { getProducts, addProducts, updateProducts, deleteProducts } from "../controllers/produto";
 import { getFestas, addFestas, updateFestas, deleteFestas } from "../controllers/festa";
@@ -8,14 +8,13 @@ import { getCaixas, addCaixas, updateCaixas, deleteCaixas } from "../controllers
 import { getVendas, addVendas, updateVendas, deleteVendas } from "../controllers/venda";
 import { getVendasProdutos, addVendasProdutos, updateVendasProdutos, deleteVendasProdutos } from "../controllers/vendas_produtos";
 import { getSangria, addSangria, updateSangria, deleteSangria } from "../controllers/sangria";
-import { getCaixasUsuarios } from "../controllers/vw_caixas_usuarios";
 
 const router = express.Router()
 
-// gerencia a rota em que será carregado os valores consultados do db
+// gerencia a rota em que será carregado os valores consultados do pool
 
 router.get("/status", (req, res) => {
-    db.query('SELECT "Hello world" as RESULT')
+    pool.query('SELECT "Hello world" as RESULT')
     res.send('Running...')})
 
 router.get("/usuarios", getUsers)
@@ -53,7 +52,5 @@ router.get("/sangria", getSangria)
 router.post("/sangria", addSangria)
 router.put("/sangria/:id_sangria", updateSangria)
 router.delete("/sangria/:id_sangria ", deleteSangria)
-
-router.get("/vw_caixas_usuarios", getCaixasUsuarios)
 
 export default router

@@ -1,4 +1,4 @@
-import {db} from "../db"
+import {pool} from "../db"
 
 
 // por ser metodo get não precisa enviar o request
@@ -6,7 +6,7 @@ export const getProducts = (_, res) => {
     const q = "SELECT * FROM tb_produtos"
 
     //este codigo acessa o bd.tb_usuarios e carrega os valores, caso dê erro, retorna o codigo de erro
-    db.query(q, (err, data) => {
+    pool.query(q, (err, data) => {
         if (err) return res.json(err)
         //em 'data' carrega a listagem de todos os usuarios
         //e retorna como resposta de quem requisitar esta api
@@ -25,7 +25,7 @@ export const addProducts = (req, res) => {
             req.body.tipo
         ],
     ]
-    db.query(q, [values], (err) => {
+    pool.query(q, [values], (err) => {
       if (err) return res.json(err)
       return res.status(200).json('Produto criado com sucesso!')
     })
@@ -42,7 +42,7 @@ export const updateProducts  = async (req, res) => {
         req.body.tipo,
     ]
 
-    await db.query  (q, [...values, req.params.id_produto], (err) => {
+    await pool.query  (q, [...values, req.params.id_produto], (err) => {
         if(err) return res.json(err)
         return res.status(200).json('Produto atualizado com sucesso!')
     })
@@ -51,7 +51,7 @@ export const updateProducts  = async (req, res) => {
 export const deleteProducts = (req, res) => {
     const q = "DELETE FROM tb_produtos WHERE `id_produto` = ?"
 
-    db.query(q, [req.params.id_produto], (err) => {
+    pool.query(q, [req.params.id_produto], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Produto deletado com sucesso!')

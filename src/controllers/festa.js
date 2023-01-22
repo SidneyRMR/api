@@ -1,4 +1,4 @@
-import {db} from "../db"
+import {pool} from "../db"
 
 
 // por ser metodo get não precisa enviar o request
@@ -6,7 +6,7 @@ export const getFestas = (_, res) => {
     const q = "SELECT * FROM tb_festas"
 
     //este codigo acessa o bd.tb_usuarios e carrega os valores, caso dê erro, retorna o codigo de erro
-    db.query(q, (err, data) => {
+    pool.query(q, (err, data) => {
         if (err) return res.json(err)
         //em 'data' carrega a listagem de todos os usuarios
         //e retorna como resposta de quem requisitar esta api
@@ -24,7 +24,7 @@ export const addFestas = (req, res) => {
             req.body.data_termino
         ],
     ]
-    db.query(q, [values], (err) => {
+    pool.query(q, [values], (err) => {
       if (err) return res.json(err)
       return res.status(200).json('Festa criada com sucesso!')
     })
@@ -40,7 +40,7 @@ export const updateFestas  = async (req, res) => {
         req.body.data_termino,
     ]
 
-    await db.query  (q, [...values, req.params.id_festa ], (err) => {
+    await pool.query  (q, [...values, req.params.id_festa ], (err) => {
         if(err) return res.json(err)
         return res.status(200).json('Festa atualizada com sucesso!')
     })
@@ -49,7 +49,7 @@ export const updateFestas  = async (req, res) => {
 export const deleteFestas = (req, res) => {
     const q = "DELETE FROM tb_festas WHERE `id_festa ` = ?"
 
-    db.query(q, [req.params.id_festa ], (err) => {
+    pool.query(q, [req.params.id_festa ], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Produto deletado com sucesso!')

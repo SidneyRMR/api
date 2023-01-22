@@ -1,4 +1,4 @@
-import {db} from "../db"
+import {pool} from "../db"
 
 
 // por ser metodo get não precisa enviar o request
@@ -6,7 +6,7 @@ export const getVendasProdutos = (_, res) => {
     const q = "SELECT * FROM tb_vendas_produtos"
 
     //este codigo acessa o bd.tb_vendas_produtos e carrega os valores, caso dê erro, retorna o codigo de erro
-    db.query(q, (err, data) => {
+    pool.query(q, (err, data) => {
         if (err) return res.json(err)
         //em 'data' carrega a listagem de todos os compras
         //e retorna como resposta de quem requisitar esta api
@@ -27,7 +27,7 @@ export const addVendasProdutos = (req, res) => {
         req.body.id_venda
       ],
     ]
-    db.query(q, [values], (err) => {
+    pool.query(q, [values], (err) => {
       if (err) return res.json(err)
       return res.status(200).json('Venda criada com sucesso!')
     })
@@ -46,7 +46,7 @@ export const updateVendasProdutos = (req, res) => {
       req.body.id_venda
     ]
 
-    db.query(q, [...values, req.params.id_venda_produto], (err) => {
+    pool.query(q, [...values, req.params.id_venda_produto], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Venda atualizada com sucesso!')
@@ -56,7 +56,7 @@ export const updateVendasProdutos = (req, res) => {
 export const deleteVendasProdutos = (req, res) => {
     const q = "DELETE FROM tb_vendas_produtos WHERE `id_venda_produto` = ?"
 
-    db.query(q, [req.params.id], (err) => {
+    pool.query(q, [req.params.id], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Venda deletada com sucesso!')

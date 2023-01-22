@@ -1,4 +1,4 @@
-import {db} from "../db"
+import {pool} from "../db"
 
 
 // por ser metodo get não precisa enviar o request
@@ -12,7 +12,7 @@ export const getUsers = (_, res) => {
 //     database: process.env.MYSQLDATABASE
 // })
     //este codigo acessa o bd.tb_usuarios e carrega os valores, caso dê erro, retorna o codigo de erro
-    db.query(q, (err, data) => {
+    pool.query(q, (err, data) => {
         if (err) return res.json(err)
         //em 'data' carrega a listagem de todos os usuarios
         //e retorna como resposta de quem requisitar esta api
@@ -23,7 +23,7 @@ export const getUsers = (_, res) => {
 export const getUser = (_, res) => {
     const q = "SELECT * FROM tb_usuarios WHERE id_usuario = ?"
 
-    db.query(q, [id_usuario], (err, data) => {
+    pool.query(q, [id_usuario], (err, data) => {
         if (err) return res.json(err)
         return res.status(200).json(data)
     })
@@ -39,7 +39,7 @@ export const addUser = (req, res) => {
         req.body.tipo,
     ]]
 
-    db.query(q, [values], (err) => {
+    pool.query(q, [values], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Usuário criado com sucesso!')
@@ -57,7 +57,7 @@ export const updateUser = (req, res) => {
         req.body.tipo,
     ]
 
-    db.query(q, [...values, req.params.id_usuario], (err) => {
+    pool.query(q, [...values, req.params.id_usuario], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Usuário atualizado com sucesso!')
@@ -68,7 +68,7 @@ export const updateUser = (req, res) => {
 export const deleteUser = (req, res) => {
     const q = "DELETE FROM tb_usuarios WHERE `id_usuario` = ?"
 
-    db.query(q, [req.params.id], (err) => {
+    pool.query(q, [req.params.id], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Usuário deletado com sucesso!')

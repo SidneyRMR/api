@@ -1,10 +1,10 @@
-import {db} from "../db"
+import {pool} from "../db"
 
 
 // Envia todos os caixa
 export const getCaixas = (_, res) => {
     const q = "SELECT * FROM tb_caixas"
-    db.query(q, (err, data) => {
+    pool.query(q, (err, data) => {
         if (err) return res.json(err)
         return res.status(200).json(data)
     })
@@ -25,7 +25,7 @@ export const addCaixas = (req, res) => {
         req.body.data_fechamento
       ],
     ]
-    db.query(q, [values], (err) => {
+    pool.query(q, [values], (err) => {
       if (err) return res.json(err)
       return res.status(200).json('Caixa criado com sucesso!')
     })
@@ -46,7 +46,7 @@ export const updateCaixas = (req, res) => {
       req.body.data_fechamento, 
     ]
 
-    db.query(q, [...values, req.params.id_caixa], (err) => {
+    pool.query(q, [...values, req.params.id_caixa], (err) => {
         if(err) return res.json(err)
         return res.status(200).json('Caixa atualizado com sucesso!')
     })
@@ -56,7 +56,7 @@ export const updateCaixas = (req, res) => {
 export const deleteCaixas = (req, res) => {
     const q = "DELETE FROM tb_caixas WHERE `id_caixa` = ?"
 
-    db.query(q, [req.params.id_caixa], (err) => {
+    pool.query(q, [req.params.id_caixa], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Caixa deletado com sucesso!')
