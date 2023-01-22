@@ -6,8 +6,6 @@
   "type": "module",
   "scripts": {
     "start": "nodemon  --es-module-specifier-resolution=node src/index.js",
-    "build": "babel src -d lib",
-    "test": "jest",
     "production": "node src/index.js"
   },
 
