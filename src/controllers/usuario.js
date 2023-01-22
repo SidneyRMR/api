@@ -4,17 +4,15 @@ import {pool} from "../db"
 
 
 export const getUsers = (_, res) => {
-pool.getConnection((err, connection) => {
-if (err) return res.status(500).json({ error: err });
-const q = "SELECT * FROM tb_usuarios"
-connection.query(q, (err, data) => {
-if (err) return res.status(500).json({ error: err });
-// in 'data' it loads the list of all users
-// and returns as a response to the one who requests this API
-connection.release();
-return res.status(200).json(data);
-});
-});
+    pool.getConnection((err, connection) => {
+        const q = "SELECT * FROM tb_usuarios"
+        if (err) return res.status(500).json({ error: err });
+        connection.query(q, (err, data) => {
+            connection.release();
+            if (err) return res.status(500).json({ error: err });
+            res.status(200).json(data);
+        });
+    });
 }
 
 
