@@ -2,16 +2,19 @@ import {pool} from "../db"
 
 
 
-// por ser metodo get não precisa enviar o request
+
 export const getUsers = (_, res) => {
-    const q = "SELECT * FROM tb_usuarios"
-    //este codigo acessa o bd.tb_usuarios e carrega os valores, caso dê erro, retorna o codigo de erro
-    pool.query(q, (err, data) => {
-        if (err) return res.json(err)
-        //em 'data' carrega a listagem de todos os usuarios
-        //e retorna como resposta de quem requisitar esta api
-        return res.status(200).json(data)
-    })
+pool.getConnection((err, connection) => {
+if (err) return res.status(500).json({ error: err });
+const q = "SELECT * FROM tb_usuarios"
+connection.query(q, (err, data) => {
+if (err) return res.status(500).json({ error: err });
+// in 'data' it loads the list of all users
+// and returns as a response to the one who requests this API
+connection.release();
+return res.status(200).json(data);
+});
+});
 }
 
 
