@@ -5,11 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
-    "start": "node index.js",
+    "start": "nodemon  --es-module-specifier-resolution=node index.js",
     "build": "babel src -d lib",
-    "test": "jest"
+    "test": "jest",
+    "production": "node index.js"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,8 +18,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-
-    "mysql2": "^3.0.1",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.20"
   }
 }
