@@ -1,6 +1,6 @@
 import express from "express";
 import {pool} from '../db.js'
-import { getUsers, getUser, addUser, updateUser, deleteUser } from "../controllers/usuario";
+import { getUsers, addUser, updateUser, deleteUser } from "../controllers/usuario";
 import { getProducts, addProducts, updateProducts, deleteProducts } from "../controllers/produto";
 import { getFestas, addFestas, updateFestas, deleteFestas } from "../controllers/festa";
 import { getCaixas, addCaixas, updateCaixas, deleteCaixas } from "../controllers/caixa";
@@ -17,8 +17,13 @@ router.get("/status", (req, res) => {
     pool.query('SELECT "Hello world" as RESULT')
     res.send('Running...')})
 
-router.get("/usuarios", getUsers)
-router.get("/usuarios/id_usuario", getUser)
+    pool.getConnection(function(err, connection) {
+        if (err) throw err; // not connected!
+    router.get("/usuarios", getUsers)
+    
+    connection.release();
+    })
+
 router.post("/usuarios", addUser)
 router.put("/usuarios/:id_usuario", updateUser)
 router.delete("/usuarios/:id_usuario", deleteUser)
