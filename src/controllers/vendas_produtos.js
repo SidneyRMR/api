@@ -56,7 +56,7 @@ export const updateVendasProdutos = (req, res) => {
 export const deleteVendasProdutos = (req, res) => {
     const q = "DELETE FROM tb_vendas_produtos WHERE `id_venda_produto` = ?"
 
-    pool.query(q, [req.params.id], (err) => {
+    pool.query(q, [req.params.id_venda_produto], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Venda deletada com sucesso!')

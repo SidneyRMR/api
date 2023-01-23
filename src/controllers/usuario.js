@@ -54,7 +54,7 @@ export const updateUser = (req, res) => {
 export const deleteUser = (req, res) => {
     const q = "DELETE FROM tb_usuarios WHERE `id_usuario` = ?"
 
-    pool.query(q, [req.params.id], (err) => {
+    pool.query(q, [req.params.id_usuario], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json('Usuário deletado com sucesso!')
