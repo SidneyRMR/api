@@ -27,7 +27,6 @@ export const addUser = (req, res) => {
 
     pool.query(q, [values], (err) => {
         if(err) return res.json(err)
-
         return res.status(200).json('Usuário criado com sucesso!')
     })
 

@@ -20,11 +20,10 @@ export const addCaixas = (req, res) => {
         req.body.id_festa, 
         req.body.abertura, 
         req.body.status_caixa,
-        req.body.data_abertura, 
+        req.body.data_abertura,  
         req.body.hora_abertura, 
-        req.body.data_fechamento
-      ],
-    ]
+        req.body.data_fechamento,
+      ]]
     pool.query(q, [values], (err) => {
       if (err) return res.json(err)
       return res.status(200).json('Caixa criado com sucesso!')
