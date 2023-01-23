@@ -1,23 +1,19 @@
 import express from "express";
 import {pool} from '../db.js'
+
 import { getProducts, addProducts, updateProducts, deleteProducts } from "../controllers/produto";
 import { getFestas, addFestas, updateFestas, deleteFestas } from "../controllers/festa";
 import { getCaixas, addCaixas, updateCaixas, deleteCaixas } from "../controllers/caixa";
-
 import { getVendas, addVendas, updateVendas, deleteVendas } from "../controllers/venda";
 import { getVendasProdutos, addVendasProdutos, updateVendasProdutos, deleteVendasProdutos } from "../controllers/vendas_produtos";
 import { getSangria, addSangria, updateSangria, deleteSangria } from "../controllers/sangria";
-
 import { getUsers, addUser, updateUser, deleteUser } from "../controllers/usuario";
-const router = express.Router()
 
+const router = express.Router()
 // gerencia a rota em que será carregado os valores consultados do pool
 
-router.get("/status", (req, res) => {
-    pool.query('SELECT "Hello world" as RESULT')
-    res.send('Running...')})
+router.get("/status", (req, res) => {res.send('Running API...')})
 
-        // if (err) throw err; // not connected!
 router.get("/usuarios", getUsers)
 router.post("/usuarios", addUser)
 router.put("/usuarios/:id_usuario", updateUser)
