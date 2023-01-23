@@ -4,12 +4,9 @@ import {pool} from "../db"
 
 
 export const getUsers = (_, res) => {
-    const q = "SELECT * FROM tb_usuarios"
-    //este codigo acessa o bd.tb_usuarios e carrega os valores, caso dê erro, retorna o codigo de erro
+    const q = "SELECT * FROM tb_usuarios"//este codigo acessa o bd.tb_usuarios e carrega os valores, caso dê erro, retorna o codigo de erro
     pool.query(q, (err, data) => {
         if (err) return res.json(err)
-        //em 'data' carrega a listagem de todos os usuarios
-        //e retorna como resposta de quem requisitar esta api
         return res.status(200).json(data)
     })
 }
