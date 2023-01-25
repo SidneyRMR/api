@@ -19,7 +19,7 @@ export const addProducts = (req, res) => {
             req.body.preco, 
             req.body.medida, 
             req.body.tipo,
-        ],
+        ]
     ]
     pool.query(q, [values], (err) => {
       if (err) return res.json(err)
