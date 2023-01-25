@@ -19,7 +19,7 @@ export const addUser = (req, res) => {
         req.body.nome_usuario,
         req.body.login,
         req.body.senha,
-        req.body.tipo,
+        req.body.tipo, 
     ]]
 
     pool.query(q, [values], (err) => {
