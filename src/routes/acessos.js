@@ -8,11 +8,17 @@ import { getVendas, addVendas, updateVendas, deleteVendas } from "../controllers
 import { getVendasProdutos, addVendasProdutos, updateVendasProdutos, deleteVendasProdutos } from "../controllers/vendas_produtos";
 import { getSangria, addSangria, updateSangria, deleteSangria } from "../controllers/sangria";
 import { getUsers, addUser, updateUser, deleteUser } from "../controllers/usuario";
+import { getEstoque, addEstoque, updateEstoque, deleteEstoque } from "../controllers/estoque";
 
 const router = express.Router()
 // gerencia a rota em que será carregado os valores consultados do pool
 
 router.get("/status", (req, res) => {res.send('Running API...')})
+
+router.get("/estoque", getEstoque)
+router.post("/estoque", addEstoque)
+router.put("/estoque/:id_estoque", updateEstoque)
+router.delete("/estoque/:id_estoque", deleteEstoque)
 
 router.get("/usuarios", getUsers)
 router.post("/usuarios", addUser)
