@@ -11,7 +11,7 @@ export const getProducts = (_, res) => {
 }
 
 export const addProducts = (req, res) => {
-    const q = 'INSERT INTO tb_produtos (nome, preco, medida, tipo) VALUES ?'
+    const q = 'INSERT INTO tb_produtos (nome, preco, medida, tipo, ativo) VALUES ?'
     ativo: true
     const values = [
         [
@@ -30,7 +30,7 @@ export const addProducts = (req, res) => {
   }
   
 export const updateProducts  = async (req, res) => {
-    const q = "UPDATE tb_produtos SET id_produto = ?, nome = ?, preco = ?, medida = ?, tipo = ? WHERE id_produto = ?"
+    const q = "UPDATE tb_produtos SET id_produto = ?, nome = ?, preco = ?, medida = ?, tipo = ?, ativo = ? WHERE id_produto = ?"
 
     const values = [
         req.body.id_produto,
