@@ -12,13 +12,15 @@ export const getProducts = (_, res) => {
 
 export const addProducts = (req, res) => {
     const q = 'INSERT INTO tb_produtos (nome, preco, medida, tipo) VALUES ?'
-  
+    ativo: true
     const values = [
         [
             req.body.nome, 
             req.body.preco, 
             req.body.medida, 
             req.body.tipo,
+            req.body.ativo,
+            
         ]
     ]
     pool.query(q, [values], (err) => {
@@ -36,6 +38,7 @@ export const updateProducts  = async (req, res) => {
         req.body.preco,
         req.body.medida,
         req.body.tipo,
+        req.body.ativo,
     ]
 
     await pool.query  (q, [...values, req.params.id_produto], (err) => {
