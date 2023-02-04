@@ -10,10 +10,14 @@ import { getSangria, addSangria, updateSangria, deleteSangria } from "../control
 import { getUsers, addUser, updateUser, deleteUser } from "../controllers/usuario";
 import { getEstoque, addEstoque, updateEstoque, deleteEstoque } from "../controllers/estoque";
 
+import { getProdutosEstoque } from "../controllers/vw_produtos_estoque";
+
 const router = express.Router()
 // gerencia a rota em que será carregado os valores consultados do pool
 
 router.get("/status", (req, res) => {res.send('Running API...')})
+
+router.get("/produtos-estoque", getProdutosEstoque)
 
 router.get("/estoque", getEstoque)
 router.post("/estoque", addEstoque)
