@@ -15,11 +15,12 @@ export const getVendasProdutos = (_, res) => {
 }
 
 export const addVendasProdutos = (req, res) => {
-    const q = 'INSERT INTO tb_vendas_produtos ( id_produto, nome, medida, preco, qtde_venda_produto, id_venda) VALUES ?'
+    const q = 'INSERT INTO tb_vendas_produtos ( id_produto, id_festa, nome, medida, preco, qtde_venda_produto, id_venda) VALUES ?'
   
     const values = [
       [
         req.body.id_produto, 
+        req.body.id_festa, 
         req.body.nome, 
         req.body.medida,
         req.body.preco,
@@ -34,11 +35,12 @@ export const addVendasProdutos = (req, res) => {
   }
   
 export const updateVendasProdutos = (req, res) => {
-    const q = "UPDATE tb_vendas_produtos SET id_venda_produto = ?, id_produto = ?, nome = ?, medida = ?, preco = ?, qtde_venda_produto = ?, id_venda  = ? WHERE id_venda_produto = ?"
+    const q = "UPDATE tb_vendas_produtos SET id_venda_produto = ?, id_produto = ?, id_festa = ?, nome = ?, medida = ?, preco = ?, qtde_venda_produto = ?, id_venda  = ? WHERE id_venda_produto = ?"
 
     const values = [
       req.body.id_venda_produto, 
       req.body.id_produto, 
+      req.body.id_festa, 
       req.body.nome, 
       req.body.medida,
       req.body.preco,
