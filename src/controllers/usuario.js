@@ -13,12 +13,13 @@ export const getUsers = (_, res) => {
 
 
 export const addUser = (req, res) => {
-    const q = "INSERT INTO tb_usuarios(nome_usuario, login, senha, tipo) VALUES ?"
+    const q = "INSERT INTO tb_usuarios(nome_usuario, login, senha, id_festa, tipo) VALUES ?"
 
     const values = [[
         req.body.nome_usuario,
         req.body.login,
         req.body.senha,
+        req.body.id_festa,
         req.body.tipo, 
     ]]
 
@@ -29,13 +30,13 @@ export const addUser = (req, res) => {
 
 }
 export const updateUser = (req, res) => {
-    const q = "UPDATE tb_usuarios SET id_usuario = ?, nome_usuario = ?, login = ?, tipo = ? WHERE id_usuario = ?"
+    const q = "UPDATE tb_usuarios SET id_usuario = ?, nome_usuario = ?, login = ?, id_festa = ?, tipo = ? WHERE id_usuario = ?"
 
     const values = [
         req.body.id_usuario,
         req.body.nome_usuario,
         req.body.login,
-        // req.body.senha,
+        req.body.id_festa,
         req.body.tipo,
     ]
 
