@@ -1,6 +1,5 @@
 import {pool} from "../db"
 
-
 // Envia todos os caixa
 export const getCaixas = (_, res) => {
     const q = "SELECT * FROM tb_caixas"
