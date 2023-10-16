@@ -1,5 +1,4 @@
 import express from "express";
-import {pool} from '../db.js'
 
 import { getProducts, addProducts, updateProducts, deleteProducts } from "../controllers/produto";
 import { getFestas, addFestas, updateFestas, deleteFestas } from "../controllers/festa";
@@ -7,9 +6,10 @@ import { getCaixas, addCaixas, updateCaixas, deleteCaixas } from "../controllers
 import { getVendas, addVendas, updateVendas, deleteVendas } from "../controllers/venda";
 import { getVendasProdutos, addVendasProdutos, updateVendasProdutos, deleteVendasProdutos } from "../controllers/vendas_produtos";
 import { getSangria, addSangria, updateSangria, deleteSangria } from "../controllers/sangria";
-import { getUsers, addUser, updateUser, deleteUser } from "../controllers/usuario";
-import { getEstoque, addEstoque, updateEstoque, deleteEstoque } from "../controllers/estoque";
 
+import { getUsers, addUser, updateUser, deleteUser } from "../controllers/usuario";
+
+import { getEstoque, addEstoque, updateEstoque, deleteEstoque } from "../controllers/estoque";
 import { getProdutosEstoque } from "../controllers/vw_produtos_estoque";
 
 const router = express.Router()

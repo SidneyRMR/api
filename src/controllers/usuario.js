@@ -1,8 +1,5 @@
 import {pool} from "../db"
 
-
-
-
 export const getUsers = (_, res) => {
     const q = "SELECT * FROM tb_usuarios"//este codigo acessa o bd.tb_usuarios e carrega os valores, caso dê erro, retorna o codigo de erro
     pool.query(q, (err, data) => {
